@@ -1,7 +1,18 @@
 import { motion } from "motion/react";
 import { Github, Youtube, Mail, Heart } from "lucide-react";
 
-export const Footer = () => {
+const XIcon = ({ size = 24 }: { size?: number }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="currentColor"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+
+export const Footer = ({ onContactClick }: { onContactClick: () => void }) => {
   return (
     <footer className="py-20 px-6 border-t border-white/5">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
@@ -15,15 +26,37 @@ export const Footer = () => {
 
         <div className="flex flex-col items-center gap-6">
           <div className="flex gap-6">
-            <motion.a href="#" whileHover={{ y: -5 }} className="text-white/40 hover:text-brand-blue transition-colors">
+            <motion.a 
+              href="https://github.com/sabinaahnaf1-code" 
+              target="_blank"
+              whileHover={{ y: -5 }} 
+              className="text-white/40 hover:text-brand-blue transition-colors"
+            >
               <Github size={24} />
             </motion.a>
-            <motion.a href="#" whileHover={{ y: -5 }} className="text-white/40 hover:text-brand-green transition-colors">
+            <motion.a 
+              href="https://www.youtube.com/@Black.Birdd.production" 
+              target="_blank"
+              whileHover={{ y: -5 }} 
+              className="text-white/40 hover:text-brand-green transition-colors"
+            >
               <Youtube size={24} />
             </motion.a>
-            <motion.a href="mailto:contact@ahnaf.com" whileHover={{ y: -5 }} className="text-white/40 hover:text-brand-yellow transition-colors">
-              <Mail size={24} />
+            <motion.a 
+              href="https://x.com/fuel_soul3026" 
+              target="_blank"
+              whileHover={{ y: -5 }} 
+              className="text-white/40 hover:text-white transition-colors"
+            >
+              <XIcon size={24} />
             </motion.a>
+            <motion.button 
+              onClick={onContactClick}
+              whileHover={{ y: -5 }} 
+              className="text-white/40 hover:text-brand-yellow transition-colors"
+            >
+              <Mail size={24} />
+            </motion.button>
           </div>
           <div className="text-xs font-bold tracking-widest text-white/20 uppercase">
             Stay Connected
@@ -33,7 +66,7 @@ export const Footer = () => {
         <div className="text-center md:text-right text-sm text-white/40">
           <p>© 2026 Ahnaf Muttaki</p>
           <p className="flex items-center justify-center md:justify-end gap-1 mt-2">
-            Made with <Heart size={14} className="text-red-500 fill-red-500" /> in Bangladesh
+            Made with <Heart size={14} className="text-brand-blue fill-brand-blue" /> in Bangladesh
           </p>
         </div>
       </div>

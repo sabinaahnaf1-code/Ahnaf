@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { Typewriter } from "react-simple-typewriter";
 import { ArrowRight, Sparkles } from "lucide-react";
 
-export const Hero = () => {
+export const Hero = ({ onContactClick }: { onContactClick: () => void }) => {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6 overflow-hidden">
       <motion.div
@@ -50,14 +50,14 @@ export const Hero = () => {
             View Projects
             <ArrowRight size={18} />
           </motion.a>
-          <motion.a
-            href="#contact"
+          <motion.button
+            onClick={onContactClick}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-8 py-4 glass text-white rounded-2xl font-bold hover:bg-white/10 transition-all"
           >
             Contact Me
-          </motion.a>
+          </motion.button>
         </div>
       </motion.div>
 

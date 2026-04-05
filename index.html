@@ -4,6 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Google AI Studio App</title>
+    <script>
+      // Safety script to prevent "Cannot set property fetch" errors
+      // Some libraries try to overwrite window.fetch which is read-only in this environment
+      (function() {
+        const originalFetch = window.fetch;
+        try {
+          Object.defineProperty(window, 'fetch', {
+            get: function() { return originalFetch; },
+            set: function() { /* Ignore attempts to overwrite fetch */ },
+            configurable: false
+          });
+        } catch (e) {
+          // If defineProperty fails, we just ignore it
+          console.warn('Could not lock window.fetch:', e);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

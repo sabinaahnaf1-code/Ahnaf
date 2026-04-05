@@ -6,8 +6,12 @@ import { Projects } from "./components/Projects";
 import { Skills } from "./components/Skills";
 import { Footer } from "./components/Footer";
 import { Background } from "./components/Background";
+import { ContactModal } from "./components/ContactModal";
+import { AdminDashboard } from "./components/AdminDashboard";
+import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-export default function App() {
+function MainApp({ onContactClick }: { onContactClick: () => void }) {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -25,16 +29,34 @@ export default function App() {
         style={{ scaleX }}
       />
 
-      <Navbar />
+      <Navbar onContactClick={onContactClick} />
       
       <main>
-        <Hero />
+        <Hero onContactClick={onContactClick} />
         <About />
         <Projects />
         <Skills />
       </main>
 
-      <Footer />
+      <Footer onContactClick={onContactClick} />
     </div>
+  );
+}
+
+export default function App() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainApp onContactClick={() => setIsContactModalOpen(true)} />} />
+        <Route path="/admin-portal" element={<AdminDashboard />} />
+      </Routes>
+
+      <ContactModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
+    </BrowserRouter>
   );
 }

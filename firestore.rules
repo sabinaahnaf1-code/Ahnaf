@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+        (request.auth.token.email == "sabinaahnaf1@gmail.com" && request.auth.token.email_verified == true);
+    }
+
+    function isValidContact(data) {
+      return data.keys().hasAll(['name', 'email', 'phone', 'createdAt']) &&
+             data.name is string && data.name.size() > 0 && data.name.size() < 100 &&
+             data.email is string && data.email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$") &&
+             data.phone is string && data.phone.size() >= 5 && data.phone.size() <= 20 &&
+             (data.message == null || (data.message is string && data.message.size() < 2000));
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+    match /contacts/{contactId} {
+      // Anyone can send a message
+      allow create: if isValidContact(request.resource.data);
+      // Only the admin can read the messages
+      allow read, list: if isAdmin();
+      // No one can update or delete messages (for security)
+      allow update, delete: if false;
+    }
+    
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
