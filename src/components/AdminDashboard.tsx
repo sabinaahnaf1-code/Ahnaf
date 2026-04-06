@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { auth, db, collection, query, orderBy, onSnapshot, signInWithGoogle, logout, onAuthStateChanged, User } from "../firebase";
-import { LogOut, Mail, User as UserIcon, Phone, Clock, ShieldCheck, Lock } from "lucide-react";
+import { LogOut, Mail, User as UserIcon, Phone, Clock, ShieldCheck, Lock, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface ContactSubmission {
   id: string;
@@ -72,6 +73,13 @@ export const AdminDashboard = () => {
           animate={{ opacity: 1, scale: 1 }}
           className="glass p-10 rounded-[2.5rem] max-w-md w-full text-center"
         >
+          <Link 
+            to="/" 
+            className="inline-flex items-center gap-2 text-white/40 hover:text-white transition-colors mb-8 text-sm"
+          >
+            <ArrowLeft size={14} />
+            Back to Website
+          </Link>
           <div className="w-20 h-20 bg-brand-blue/10 text-brand-blue rounded-full flex items-center justify-center mx-auto mb-8">
             <Lock size={40} />
           </div>
@@ -93,6 +101,13 @@ export const AdminDashboard = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-bg-dark p-6">
         <div className="glass p-10 rounded-[2.5rem] max-w-md w-full text-center">
+          <Link 
+            to="/" 
+            className="inline-flex items-center gap-2 text-white/40 hover:text-white transition-colors mb-8 text-sm"
+          >
+            <ArrowLeft size={14} />
+            Back to Website
+          </Link>
           <div className="w-20 h-20 bg-red-500/10 text-red-500 rounded-full flex items-center justify-center mx-auto mb-8">
             <ShieldCheck size={40} />
           </div>
@@ -116,6 +131,13 @@ export const AdminDashboard = () => {
       <div className="max-w-6xl mx-auto">
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
           <div>
+            <Link 
+              to="/" 
+              className="inline-flex items-center gap-2 text-white/40 hover:text-white transition-colors mb-4 text-sm"
+            >
+              <ArrowLeft size={14} />
+              Back to Website
+            </Link>
             <h1 className="text-4xl font-bold mb-2">Admin Dashboard</h1>
             <p className="text-white/40">Welcome back, Ahnaf. You have {contacts.length} submissions.</p>
           </div>

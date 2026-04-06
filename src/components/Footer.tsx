@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Github, Youtube, Mail, Heart } from "lucide-react";
+import { Github, Youtube, Mail, Heart, ShieldCheck } from "lucide-react";
 
 const XIcon = ({ size = 24 }: { size?: number }) => (
   <svg 
@@ -65,9 +65,18 @@ export const Footer = ({ onContactClick }: { onContactClick: () => void }) => {
 
         <div className="text-center md:text-right text-sm text-white/40">
           <p>© 2026 Ahnaf Muttaki</p>
-          <p className="flex items-center justify-center md:justify-end gap-1 mt-2">
-            Made with <Heart size={14} className="text-brand-blue fill-brand-blue" /> in Bangladesh
-          </p>
+          <div className="flex items-center justify-center md:justify-end gap-3 mt-2">
+            <p className="flex items-center gap-1">
+              Made with <Heart size={14} className="text-brand-blue fill-brand-blue" /> in Bangladesh
+            </p>
+            <motion.a 
+              href="/admin-portal"
+              className="text-white/5 hover:text-white/20 transition-colors"
+              title="Admin Portal"
+            >
+              <ShieldCheck size={10} />
+            </motion.a>
+          </div>
         </div>
       </div>
     </footer>
