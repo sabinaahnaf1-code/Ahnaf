@@ -10,15 +10,30 @@
         "countryCode": { "type": "string", "description": "The sender's country code." },
         "phone": { "type": "string", "description": "The sender's phone number." },
         "message": { "type": "string", "description": "The message content." },
-        "createdAt": { "type": "string", "format": "date-time", "description": "The time the message was sent." }
+        "createdAt": { "type": "string", "format": "date-time", "description": "The time the message was sent." },
+        "status": { "type": "string", "enum": ["inbox", "trash", "spam"], "description": "The status of the message." }
       },
-      "required": ["name", "email", "phone", "createdAt"]
+      "required": ["name", "email", "phone", "createdAt", "status"]
+    },
+    "SpamFilter": {
+      "title": "Spam Filter",
+      "description": "A filter to automatically mark messages as spam.",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["email", "phone", "name"], "description": "The type of filter." },
+        "value": { "type": "string", "description": "The value to filter for." }
+      },
+      "required": ["type", "value"]
     }
   },
   "firestore": {
     "/contacts/{contactId}": {
       "schema": "Contact",
       "description": "Collection of contact form submissions."
+    },
+    "/spamFilters/{filterId}": {
+      "schema": "SpamFilter",
+      "description": "Collection of spam filters."
     }
   }
 }

@@ -53,7 +53,7 @@ export const Footer = ({ onContactClick }: { onContactClick: () => void }) => {
             <motion.button 
               onClick={onContactClick}
               whileHover={{ y: -5 }} 
-              className="text-white/40 hover:text-brand-yellow transition-colors"
+              className="text-white/40 hover:text-brand-blue transition-colors"
             >
               <Mail size={24} />
             </motion.button>

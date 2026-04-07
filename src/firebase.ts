@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, User } from 'firebase/auth';
-import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, Timestamp } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, Timestamp, updateDoc, deleteDoc, doc, where, getDocs } from 'firebase/firestore';
 
 // Import the Firebase configuration
 import firebaseConfig from '../firebase-applet-config.json';
@@ -17,5 +17,5 @@ export const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
 // Helper for Logout
 export const logout = () => auth.signOut();
 
-export { collection, addDoc, query, orderBy, onSnapshot, Timestamp, onAuthStateChanged };
+export { collection, addDoc, query, orderBy, onSnapshot, Timestamp, onAuthStateChanged, updateDoc, deleteDoc, doc, where, getDocs };
 export type { User };

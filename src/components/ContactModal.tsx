@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "motion/react";
 import { X, Send, Phone, Mail, User, Globe } from "lucide-react";
 import React, { useState } from "react";
-import { db, collection, addDoc, Timestamp } from "../firebase";
+import { db, collection, addDoc, Timestamp, query, where, getDocs } from "../firebase";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -33,7 +33,33 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      // 1. Save to Firestore
+      // 1. Check for Spam Filters
+      const email = data.email as string;
+      const phone = data.phone as string;
+      const name = data.name as string;
+
+      let isSpam = false;
+
+      // Check email spam
+      const emailQuery = query(collection(db, "spamFilters"), where("type", "==", "email"), where("value", "==", email));
+      const emailSnap = await getDocs(emailQuery);
+      if (!emailSnap.empty) isSpam = true;
+
+      // Check phone spam
+      if (!isSpam) {
+        const phoneQuery = query(collection(db, "spamFilters"), where("type", "==", "phone"), where("value", "==", phone));
+        const phoneSnap = await getDocs(phoneQuery);
+        if (!phoneSnap.empty) isSpam = true;
+      }
+
+      // Check name spam
+      if (!isSpam) {
+        const nameQuery = query(collection(db, "spamFilters"), where("type", "==", "name"), where("value", "==", name));
+        const nameSnap = await getDocs(nameQuery);
+        if (!nameSnap.empty) isSpam = true;
+      }
+
+      // 2. Save to Firestore
       await addDoc(collection(db, "contacts"), {
         name: data.name,
         email: data.email,
@@ -41,17 +67,20 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
         phone: data.phone,
         message: data.message || "",
         createdAt: Timestamp.now(),
+        status: isSpam ? "spam" : "inbox",
       });
 
-      // 2. Send to Formspree (as backup/email notification)
-      const response = await fetch("https://formspree.io/f/mgoppjpj", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      });
+      // 3. Send to Formspree (only if not spam)
+      if (!isSpam) {
+        await fetch("https://formspree.io/f/mgoppjpj", {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        });
+      }
 
       // We consider it a success if Firestore worked, even if Formspree fails
       // (though Formspree should work too)
@@ -225,7 +254,7 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                   </motion.button>
 
                   {status === "error" && (
-                    <p className="text-brand-yellow text-xs text-center mt-2">
+                    <p className="text-brand-green text-xs text-center mt-2">
                       Something went wrong. Please try again or email me directly.
                     </p>
                   )}

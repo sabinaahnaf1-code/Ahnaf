@@ -23,7 +23,7 @@ export const Hero = ({ onContactClick }: { onContactClick: () => void }) => {
 
         <h1 className="text-5xl md:text-8xl font-extrabold mb-6 tracking-tight">
           Hi, I'm{" "}
-          <span className="bg-gradient-to-r from-brand-blue via-brand-green to-brand-yellow bg-clip-text text-transparent animate-gradient">
+          <span className="bg-gradient-to-r from-brand-blue to-brand-green bg-clip-text text-transparent animate-gradient">
             Ahnaf Muttaki
           </span>
         </h1>

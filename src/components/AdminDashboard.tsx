@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { auth, db, collection, query, orderBy, onSnapshot, signInWithGoogle, logout, onAuthStateChanged, User } from "../firebase";
-import { LogOut, Mail, User as UserIcon, Phone, Clock, ShieldCheck, Lock, ArrowLeft } from "lucide-react";
+import { auth, db, collection, query, orderBy, onSnapshot, signInWithGoogle, logout, onAuthStateChanged, User, updateDoc, deleteDoc, doc, addDoc } from "../firebase";
+import { LogOut, Mail, User as UserIcon, Phone, Clock, ShieldCheck, Lock, ArrowLeft, Trash2, AlertTriangle, RotateCcw, CheckCircle, Trash } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface ContactSubmission {
@@ -12,13 +12,17 @@ interface ContactSubmission {
   phone: string;
   message: string;
   createdAt: any;
+  status: "inbox" | "trash" | "spam";
 }
+
+type TabType = "inbox" | "trash" | "spam";
 
 export const AdminDashboard = () => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [contacts, setContacts] = useState<ContactSubmission[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<TabType>("inbox");
 
   const ADMIN_EMAIL = "sabinaahnaf1@gmail.com";
 
@@ -56,6 +60,43 @@ export const AdminDashboard = () => {
       timeStyle: 'short',
     }).format(date);
   };
+
+  const handleUpdateStatus = async (id: string, newStatus: TabType) => {
+    try {
+      await updateDoc(doc(db, "contacts", id), { status: newStatus });
+    } catch (err) {
+      console.error("Update error:", err);
+      alert("Failed to update message status.");
+    }
+  };
+
+  const handleDeletePermanently = async (id: string) => {
+    if (!window.confirm("Are you sure you want to delete this message permanently?")) return;
+    try {
+      await deleteDoc(doc(db, "contacts", id));
+    } catch (err) {
+      console.error("Delete error:", err);
+      alert("Failed to delete message.");
+    }
+  };
+
+  const handleMarkAsSpam = async (contact: ContactSubmission) => {
+    if (!window.confirm("Marking as spam will block future messages from this name, email, and phone number. Continue?")) return;
+    try {
+      // 1. Update current message status
+      await updateDoc(doc(db, "contacts", contact.id), { status: "spam" });
+
+      // 2. Add to spam filters
+      await addDoc(collection(db, "spamFilters"), { type: "email", value: contact.email });
+      await addDoc(collection(db, "spamFilters"), { type: "phone", value: contact.phone });
+      await addDoc(collection(db, "spamFilters"), { type: "name", value: contact.name });
+    } catch (err) {
+      console.error("Spam error:", err);
+      alert("Failed to mark as spam.");
+    }
+  };
+
+  const filteredContacts = contacts.filter(c => (c.status || "inbox") === activeTab);
 
   if (loading) {
     return (
@@ -139,7 +180,7 @@ export const AdminDashboard = () => {
               Back to Website
             </Link>
             <h1 className="text-4xl font-bold mb-2">Admin Dashboard</h1>
-            <p className="text-white/40">Welcome back, Ahnaf. You have {contacts.length} submissions.</p>
+            <p className="text-white/40">Welcome back, Ahnaf. You have {contacts.length} total messages.</p>
           </div>
           <button
             onClick={logout}
@@ -150,6 +191,23 @@ export const AdminDashboard = () => {
           </button>
         </header>
 
+        {/* Tabs */}
+        <div className="flex gap-2 mb-8 bg-white/5 p-1 rounded-2xl w-fit">
+          {(["inbox", "spam", "trash"] as TabType[]).map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-6 py-2.5 rounded-xl text-sm font-bold capitalize transition-all cursor-pointer ${
+                activeTab === tab 
+                  ? "bg-brand-blue text-white glow-blue" 
+                  : "text-white/40 hover:text-white/60"
+              }`}
+            >
+              {tab} ({contacts.filter(c => (c.status || "inbox") === tab).length})
+            </button>
+          ))}
+        </div>
+
         {error && (
           <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-500 rounded-2xl mb-8">
             {error}
@@ -158,11 +216,12 @@ export const AdminDashboard = () => {
 
         <div className="grid gap-6">
           <AnimatePresence mode="popLayout">
-            {contacts.map((contact, index) => (
+            {filteredContacts.map((contact, index) => (
               <motion.div
                 key={contact.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ delay: index * 0.05 }}
                 className="glass p-8 rounded-3xl relative overflow-hidden group"
               >
@@ -199,15 +258,55 @@ export const AdminDashboard = () => {
                         </p>
                       </div>
                     </div>
+
+                    <div className="flex flex-wrap items-end justify-end gap-3 self-end">
+                      {activeTab === "inbox" && (
+                        <>
+                          <button
+                            onClick={() => handleUpdateStatus(contact.id, "trash")}
+                            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-red-500/20 text-white/40 hover:text-red-500 rounded-xl transition-all text-xs font-bold cursor-pointer"
+                          >
+                            <Trash2 size={14} />
+                            Delete
+                          </button>
+                          <button
+                            onClick={() => handleMarkAsSpam(contact)}
+                            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-brand-blue/20 text-white/40 hover:text-brand-blue rounded-xl transition-all text-xs font-bold cursor-pointer"
+                          >
+                            <AlertTriangle size={14} />
+                            Mark as Spam
+                          </button>
+                        </>
+                      )}
+
+                      {(activeTab === "trash" || activeTab === "spam") && (
+                        <>
+                          <button
+                            onClick={() => handleUpdateStatus(contact.id, "inbox")}
+                            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-brand-green/20 text-white/40 hover:text-brand-green rounded-xl transition-all text-xs font-bold cursor-pointer"
+                          >
+                            <RotateCcw size={14} />
+                            Restore to Inbox
+                          </button>
+                          <button
+                            onClick={() => handleDeletePermanently(contact.id)}
+                            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-red-500/20 text-white/40 hover:text-red-500 rounded-xl transition-all text-xs font-bold cursor-pointer"
+                          >
+                            <Trash size={14} />
+                            Delete Permanently
+                          </button>
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
               </motion.div>
             ))}
           </AnimatePresence>
 
-          {contacts.length === 0 && (
+          {filteredContacts.length === 0 && (
             <div className="text-center py-20 glass rounded-[3rem]">
-              <p className="text-white/20 text-xl">No submissions yet.</p>
+              <p className="text-white/20 text-xl">No messages in {activeTab}.</p>
             </div>
           )}
         </div>

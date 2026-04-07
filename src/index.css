@@ -8,7 +8,6 @@
   --color-brand-deep: #3b5998;
   --color-brand-blue: #4a90e2;
   --color-brand-green: #90d06a;
-  --color-brand-yellow: #fdf08e;
   
   --color-bg-dark: #0a0a0a;
   --color-bg-card: #141414;
@@ -38,10 +37,6 @@
 
 .glow-green {
   @apply shadow-[0_0_20px_rgba(144,208,106,0.3)];
-}
-
-.glow-yellow {
-  @apply shadow-[0_0_20px_rgba(253,240,142,0.3)];
 }
 
 @keyframes float {

@@ -14,11 +14,18 @@ service cloud.firestore {
     }
 
     function isValidContact(data) {
-      return data.keys().hasAll(['name', 'email', 'phone', 'createdAt']) &&
+      return data.keys().hasAll(['name', 'email', 'phone', 'createdAt', 'status']) &&
              data.name is string && data.name.size() > 0 && data.name.size() < 100 &&
              data.email is string && data.email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$") &&
              data.phone is string && data.phone.size() >= 5 && data.phone.size() <= 20 &&
+             data.status in ['inbox', 'trash', 'spam'] &&
              (data.message == null || (data.message is string && data.message.size() < 2000));
+    }
+
+    function isValidSpamFilter(data) {
+      return data.keys().hasAll(['type', 'value']) &&
+             data.type in ['email', 'phone', 'name'] &&
+             data.value is string && data.value.size() > 0;
     }
 
     // ===============================================================
@@ -27,10 +34,13 @@ service cloud.firestore {
     match /contacts/{contactId} {
       // Anyone can send a message
       allow create: if isValidContact(request.resource.data);
-      // Only the admin can read the messages
-      allow read, list: if isAdmin();
-      // No one can update or delete messages (for security)
-      allow update, delete: if false;
+      // Only the admin can read/update/delete the messages
+      allow read, list, update, delete: if isAdmin();
+    }
+
+    match /spamFilters/{filterId} {
+      // Only the admin can manage spam filters
+      allow read, list, create, update, delete: if isAdmin();
     }
     
     // Default deny

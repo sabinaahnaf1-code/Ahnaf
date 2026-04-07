@@ -20,7 +20,7 @@ const projects = [
     title: "DIY Tech Experiments",
     description: "A collection of hardware hacks, creative coding projects, and electronic experiments.",
     tags: ["Hardware", "C++", "Creative"],
-    color: "brand-yellow",
+    color: "brand-green",
     github: "https://github.com/sabinaahnaf1-code",
   },
 ];
