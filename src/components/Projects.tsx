@@ -13,14 +13,14 @@ const projects = [
     title: "Animated Portfolio",
     description: "A high-performance personal website with smooth transitions, glassmorphism, and modern UI/UX.",
     tags: ["React", "Motion", "Tailwind"],
-    color: "brand-cyan",
+    color: "brand-green",
     github: "https://github.com/sabinaahnaf1-code",
   },
   {
     title: "DIY Tech Experiments",
     description: "A collection of hardware hacks, creative coding projects, and electronic experiments.",
     tags: ["Hardware", "C++", "Creative"],
-    color: "brand-cyan",
+    color: "brand-green",
     github: "https://github.com/sabinaahnaf1-code",
   },
 ];

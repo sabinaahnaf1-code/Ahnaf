@@ -38,7 +38,7 @@ export const Footer = ({ onContactClick }: { onContactClick: () => void }) => {
               href="https://www.youtube.com/@Black.Birdd.production" 
               target="_blank"
               whileHover={{ y: -5 }} 
-              className="text-white/40 hover:text-brand-cyan transition-colors"
+              className="text-white/40 hover:text-brand-green transition-colors"
             >
               <Youtube size={24} />
             </motion.a>

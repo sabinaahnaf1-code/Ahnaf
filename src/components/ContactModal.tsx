@@ -119,7 +119,7 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
           >
             {/* Background Glows */}
             <div className="absolute -top-24 -right-24 w-48 h-48 bg-brand-blue/30 rounded-full blur-[80px]" />
-            <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-brand-cyan/20 rounded-full blur-[80px]" />
+            <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-brand-green/20 rounded-full blur-[80px]" />
 
             <div className="relative z-10">
               <div className="flex justify-between items-center mb-6 sm:mb-8">
@@ -145,7 +145,7 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", damping: 12 }}
-                    className="w-16 h-16 sm:w-20 sm:h-20 bg-brand-cyan/20 text-brand-cyan rounded-full flex items-center justify-center mx-auto mb-6"
+                    className="w-16 h-16 sm:w-20 sm:h-20 bg-brand-green/20 text-brand-green rounded-full flex items-center justify-center mx-auto mb-6"
                   >
                     <Send size={32} className="sm:w-10 sm:h-10" />
                   </motion.div>
@@ -254,7 +254,7 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                   </motion.button>
 
                   {status === "error" && (
-                    <p className="text-brand-cyan text-xs text-center mt-2">
+                    <p className="text-brand-green text-xs text-center mt-2">
                       Something went wrong. Please try again or email me directly.
                     </p>
                   )}

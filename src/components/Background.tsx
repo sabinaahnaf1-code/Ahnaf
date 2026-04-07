@@ -54,7 +54,7 @@ export const Background = () => {
           scale: [1.2, 1, 1.2],
         }}
         transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-brand-cyan/10 blur-[120px]"
+        className="absolute top-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-brand-green/10 blur-[120px]"
       />
       <motion.div
         animate={{
@@ -72,7 +72,7 @@ export const Background = () => {
           scale: [1.1, 0.9, 1.1],
         }}
         transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-[20%] right-[20%] w-[40%] h-[40%] rounded-full bg-brand-cyan/5 blur-[80px]"
+        className="absolute bottom-[20%] right-[20%] w-[40%] h-[40%] rounded-full bg-brand-green/5 blur-[80px]"
       />
 
       {/* Interactive Mouse Glow */}

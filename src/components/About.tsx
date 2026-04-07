@@ -48,7 +48,7 @@ export const About = () => {
             whileHover={{ y: -5 }}
             className="glass glass-hover p-4 rounded-2xl flex flex-col gap-3"
           >
-            <div className="w-10 h-10 rounded-xl bg-brand-cyan/20 flex items-center justify-center text-brand-cyan shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-brand-green/20 flex items-center justify-center text-brand-green shrink-0">
               <Cpu size={20} />
             </div>
             <div>
