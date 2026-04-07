@@ -29,7 +29,7 @@ export const Projects = () => {
   return (
     <section id="projects" className="py-20 px-6 max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <div className="inline-flex items-center gap-2 text-brand-blue mb-4 font-bold tracking-widest uppercase text-xs">
+        <div className="inline-flex items-center gap-2 text-brand-green mb-4 font-bold tracking-widest uppercase text-xs">
           <Layers size={14} />
           <span>Portfolio</span>
         </div>
@@ -52,7 +52,7 @@ export const Projects = () => {
             
             <div className="relative z-10">
               <div className="flex justify-between items-start mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-brand-blue/20 flex items-center justify-center text-brand-blue">
+                <div className="w-12 h-12 rounded-2xl bg-brand-green/20 flex items-center justify-center text-brand-green">
                   <project.icon size={20} />
                 </div>
                 <div className="flex gap-3">
@@ -84,7 +84,7 @@ export const Projects = () => {
 
               <div className="flex flex-wrap gap-2">
                 {project.tags.map(tag => (
-                  <span key={tag} className="px-3 py-1 rounded-full bg-white/5 text-[10px] font-bold uppercase tracking-wider text-white/40 border border-white/5">
+                  <span key={tag} className="px-3 py-1 rounded-full bg-brand-green/5 text-[10px] font-bold uppercase tracking-wider text-brand-green/60 border border-brand-green/10">
                     {tag}
                   </span>
                 ))}

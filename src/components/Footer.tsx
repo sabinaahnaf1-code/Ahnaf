@@ -30,7 +30,7 @@ export const Footer = ({ onContactClick }: { onContactClick: () => void }) => {
               href="https://github.com/sabinaahnaf1-code" 
               target="_blank"
               whileHover={{ y: -5 }} 
-              className="text-white/40 hover:text-brand-blue transition-colors"
+              className="text-white/40 hover:text-brand-green transition-colors"
             >
               <Github size={24} />
             </motion.a>
@@ -46,14 +46,14 @@ export const Footer = ({ onContactClick }: { onContactClick: () => void }) => {
               href="https://x.com/fuel_soul3026" 
               target="_blank"
               whileHover={{ y: -5 }} 
-              className="text-white/40 hover:text-white transition-colors"
+              className="text-white/40 hover:text-brand-green transition-colors"
             >
               <XIcon size={24} />
             </motion.a>
             <motion.button 
               onClick={onContactClick}
               whileHover={{ y: -5 }} 
-              className="text-white/40 hover:text-brand-blue transition-colors"
+              className="text-white/40 hover:text-brand-green transition-colors"
             >
               <Mail size={24} />
             </motion.button>
@@ -67,7 +67,7 @@ export const Footer = ({ onContactClick }: { onContactClick: () => void }) => {
           <p>© 2026 Ahnaf Muttaki</p>
           <div className="flex items-center justify-center md:justify-end gap-3 mt-2">
             <p className="flex items-center gap-1">
-              Made with <Heart size={14} className="text-brand-blue fill-brand-blue" /> in Bangladesh
+              Made with <Heart size={14} className="text-brand-green fill-brand-green" /> in Bangladesh
             </p>
             <motion.a 
               href="/admin-portal"

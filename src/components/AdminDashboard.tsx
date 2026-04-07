@@ -101,7 +101,7 @@ export const AdminDashboard = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-bg-dark">
-        <div className="w-12 h-12 border-4 border-brand-blue/20 border-t-brand-blue rounded-full animate-spin" />
+        <div className="w-12 h-12 border-4 border-brand-green/20 border-t-brand-green rounded-full animate-spin" />
       </div>
     );
   }
@@ -121,7 +121,7 @@ export const AdminDashboard = () => {
             <ArrowLeft size={14} />
             Back to Website
           </Link>
-          <div className="w-20 h-20 bg-brand-blue/10 text-brand-blue rounded-full flex items-center justify-center mx-auto mb-8">
+          <div className="w-20 h-20 bg-brand-green/10 text-brand-green rounded-full flex items-center justify-center mx-auto mb-8">
             <Lock size={40} />
           </div>
           <h1 className="text-3xl font-bold mb-4">Admin Portal</h1>
@@ -232,7 +232,7 @@ export const AdminDashboard = () => {
                 <div className="relative z-10">
                   <div className="flex flex-wrap justify-between items-start gap-4 mb-6">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-brand-blue/10 text-brand-blue rounded-2xl flex items-center justify-center">
+                      <div className="w-12 h-12 bg-brand-green/10 text-brand-green rounded-2xl flex items-center justify-center">
                         <UserIcon size={24} />
                       </div>
                       <div>
@@ -240,7 +240,7 @@ export const AdminDashboard = () => {
                         <p className="text-white/40 text-sm">{contact.email}</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full text-xs font-medium text-white/40">
+                    <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full text-xs font-medium text-brand-green/60">
                       <Clock size={14} />
                       {formatBDTime(contact.createdAt)} (BD Time)
                     </div>

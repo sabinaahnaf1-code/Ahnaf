@@ -155,9 +155,9 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 flex flex-col">
                   <div className="space-y-2">
-                    <label className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-white/40 ml-1">Full Name</label>
+                    <label className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-green/60 ml-1">Full Name</label>
                     <div className="relative group">
-                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-brand-blue transition-colors">
+                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-brand-green transition-colors">
                         <User size={18} />
                       </div>
                       <input
@@ -171,9 +171,9 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-white/40 ml-1">Email Address</label>
+                    <label className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-green/60 ml-1">Email Address</label>
                     <div className="relative group">
-                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-brand-blue transition-colors">
+                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-brand-green transition-colors">
                         <Mail size={18} />
                       </div>
                       <input
@@ -188,9 +188,9 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
 
                   <div className="flex flex-col sm:grid sm:grid-cols-3 gap-4">
                     <div className="space-y-2">
-                      <label className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-white/40 ml-1">Code</label>
+                      <label className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-green/60 ml-1">Code</label>
                       <div className="relative group">
-                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-brand-blue transition-colors">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-brand-green transition-colors">
                           <Globe size={18} />
                         </div>
                         <select
@@ -206,9 +206,9 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                       </div>
                     </div>
                     <div className="sm:col-span-2 space-y-2">
-                      <label className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-white/40 ml-1">Phone Number</label>
+                      <label className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-green/60 ml-1">Phone Number</label>
                       <div className="relative group">
-                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-brand-blue transition-colors">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-brand-green transition-colors">
                           <Phone size={18} />
                         </div>
                         <input
@@ -224,7 +224,7 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-white/40 ml-1">Message (Optional)</label>
+                    <label className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-green/60 ml-1">Message (Optional)</label>
                     <textarea
                       name="message"
                       rows={3}

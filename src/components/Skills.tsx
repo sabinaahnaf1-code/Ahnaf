@@ -17,7 +17,7 @@ export const Skills = () => {
         <div className="absolute top-0 right-0 w-64 h-64 bg-brand-blue/10 blur-[100px] rounded-full" />
         
         <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 text-brand-blue mb-4 font-bold tracking-widest uppercase text-xs">
+          <div className="inline-flex items-center gap-2 text-brand-green mb-4 font-bold tracking-widest uppercase text-xs">
             <Terminal size={14} />
             <span>Abilities</span>
           </div>

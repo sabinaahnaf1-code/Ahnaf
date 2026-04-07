@@ -15,7 +15,7 @@ export const Hero = ({ onContactClick }: { onContactClick: () => void }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-medium text-brand-blue mb-8 border-brand-blue/20"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-medium text-brand-green mb-8 border-brand-green/20"
         >
           <Sparkles size={14} />
           <span>Available for new projects</span>

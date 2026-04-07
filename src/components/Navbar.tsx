@@ -17,7 +17,7 @@ const NavItem = ({ href, children }: { href: string; children: ReactNode }) => (
   <motion.a
     href={href}
     whileHover={{ y: -2 }}
-    className="text-sm font-medium text-white/60 hover:text-white transition-colors"
+    className="text-sm font-medium text-white/60 hover:text-brand-green transition-colors"
   >
     {children}
   </motion.a>
@@ -38,7 +38,7 @@ export const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
           <NavItem href="#skills">Skills</NavItem>
           <button
             onClick={onContactClick}
-            className="text-xs sm:text-sm font-medium text-white/60 hover:text-white transition-colors cursor-pointer"
+            className="text-xs sm:text-sm font-medium text-white/60 hover:text-brand-green transition-colors cursor-pointer"
           >
             Contact
           </button>
@@ -51,7 +51,7 @@ export const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
             href="https://github.com/sabinaahnaf1-code"
             target="_blank"
             whileHover={{ scale: 1.1 }}
-            className="text-white/60 hover:text-white transition-colors"
+            className="text-white/60 hover:text-brand-green transition-colors"
           >
             <Github size={16} className="sm:w-[18px] sm:h-[18px]" />
           </motion.a>
@@ -59,7 +59,7 @@ export const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
             href="https://www.youtube.com/@Black.Birdd.production"
             target="_blank"
             whileHover={{ scale: 1.1 }}
-            className="text-white/60 hover:text-white transition-colors"
+            className="text-white/60 hover:text-brand-green transition-colors"
           >
             <Youtube size={16} className="sm:w-[18px] sm:h-[18px]" />
           </motion.a>
@@ -67,7 +67,7 @@ export const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
             href="https://x.com/fuel_soul3026"
             target="_blank"
             whileHover={{ scale: 1.1 }}
-            className="text-white/60 hover:text-white transition-colors"
+            className="text-white/60 hover:text-brand-green transition-colors"
           >
             <XIcon size={16} />
           </motion.a>
