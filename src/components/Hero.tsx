@@ -23,7 +23,7 @@ export const Hero = ({ onContactClick }: { onContactClick: () => void }) => {
 
         <h1 className="text-5xl md:text-8xl font-extrabold mb-6 tracking-tight">
           Hi, I'm{" "}
-          <span className="bg-gradient-to-r from-brand-blue to-brand-green bg-clip-text text-transparent animate-gradient">
+          <span className="bg-gradient-to-r from-brand-blue to-brand-cyan bg-clip-text text-transparent animate-gradient">
             Ahnaf Muttaki
           </span>
         </h1>
@@ -87,7 +87,7 @@ export const Hero = ({ onContactClick }: { onContactClick: () => void }) => {
         }}
         className="absolute bottom-1/4 right-10 md:right-20 w-16 h-16 glass rounded-full -rotate-12 flex items-center justify-center"
       >
-        <div className="w-8 h-8 rounded-full bg-brand-green/40 blur-sm" />
+        <div className="w-8 h-8 rounded-full bg-brand-cyan/40 blur-sm" />
       </motion.div>
     </section>
   );

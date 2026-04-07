@@ -249,7 +249,7 @@ export const AdminDashboard = () => {
                   <div className="grid md:grid-cols-2 gap-8">
                     <div className="space-y-4">
                       <div className="flex items-center gap-3 text-white/60">
-                        <Phone size={16} className="text-brand-green" />
+                        <Phone size={16} className="text-brand-cyan" />
                         <span>{contact.countryCode} {contact.phone}</span>
                       </div>
                       <div className="p-4 bg-white/[0.02] rounded-2xl border border-white/5">
@@ -283,7 +283,7 @@ export const AdminDashboard = () => {
                         <>
                           <button
                             onClick={() => handleUpdateStatus(contact.id, "inbox")}
-                            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-brand-green/20 text-white/40 hover:text-brand-green rounded-xl transition-all text-xs font-bold cursor-pointer"
+                            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-brand-cyan/20 text-white/40 hover:text-brand-cyan rounded-xl transition-all text-xs font-bold cursor-pointer"
                           >
                             <RotateCcw size={14} />
                             Restore to Inbox

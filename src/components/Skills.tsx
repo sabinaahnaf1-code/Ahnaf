@@ -3,10 +3,10 @@ import { Terminal } from "lucide-react";
 
 const skills = [
   { name: "HTML / CSS", level: 95, color: "blue", bgClass: "bg-brand-blue", glowClass: "glow-blue", textClass: "text-brand-blue" },
-  { name: "JavaScript", level: 85, color: "green", bgClass: "bg-brand-green", glowClass: "glow-green", textClass: "text-brand-green" },
+  { name: "JavaScript", level: 85, color: "cyan", bgClass: "bg-brand-cyan", glowClass: "glow-cyan", textClass: "text-brand-cyan" },
   { name: "React / Vite", level: 80, color: "blue", bgClass: "bg-brand-blue", glowClass: "glow-blue", textClass: "text-brand-blue" },
-  { name: "Arduino / IoT", level: 75, color: "green", bgClass: "bg-brand-green", glowClass: "glow-green", textClass: "text-brand-green" },
-  { name: "UI/UX Design", level: 70, color: "green", bgClass: "bg-brand-green", glowClass: "glow-green", textClass: "text-brand-green" },
+  { name: "Arduino / IoT", level: 75, color: "cyan", bgClass: "bg-brand-cyan", glowClass: "glow-cyan", textClass: "text-brand-cyan" },
+  { name: "UI/UX Design", level: 70, color: "cyan", bgClass: "bg-brand-cyan", glowClass: "glow-cyan", textClass: "text-brand-cyan" },
   { name: "ESP8266", level: 80, color: "blue", bgClass: "bg-brand-blue", glowClass: "glow-blue", textClass: "text-brand-blue" },
 ];
 
